@@ -32,6 +32,7 @@ funcionar, a veces sin dar error:
 | En el vídeo | Hoy, si no dices nada | Qué pasa con el código del curso |
 |---|---|---|
 | Sin fechas, descarga **todo el histórico** | Descarga **solo el último mes** | Medias de 60 días vacías, `.loc["2020"]` da `KeyError` |
+| Con solo `end="2021-01-01"`, desde el principio hasta esa fecha | **Solo el mes anterior** a esa fecha | Sortino y backtests calculados sobre un mes, sin ningún error |
 | Columnas `Open, High, Low, Close, Adj Close, Volume` | Sin `Adj Close` (`auto_adjust=True`) | `KeyError: 'Adj Close'` y *Length mismatch* al renombrar |
 | Columnas simples, en ese orden | Columnas de dos niveles (precio, ticker) y en **orden alfabético** | Aunque arregles lo anterior, al renombrar por posición `open` acabaría siendo `Adj Close` |
 
@@ -47,7 +48,7 @@ Por eso cada `yf.download(...)` lleva ahora tres argumentos que devuelven el com
 yf.download("EURUSD=X", period="max", auto_adjust=False, multi_level_index=False)
 ```
 
-`period="max"` solo se añade cuando la llamada no tenía fechas. Y donde el código renombra las columnas
+`period="max"` se añade siempre que la llamada no tenga fecha de inicio (`start`). Y donde el código renombra las columnas
 por posición (`df.columns = ["open", "high", ...]`), se reordenan antes como estaban:
 `[["Open", "High", "Low", "Close", "Adj Close", "Volume"]]`.
 
