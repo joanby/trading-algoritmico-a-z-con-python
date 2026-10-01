@@ -1,0 +1,9 @@
+# Versiones con las que se ha comprobado la rama update-2026 (octubre de 2026).
+yfinance>=1.7
+pandas>=3.0
+numpy>=2.5
+matplotlib>=3.11
+scikit-learn>=1.9
+ta>=0.11
+mpl_finance>=0.10.1
+jupyter
