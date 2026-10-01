@@ -1,9 +1,10 @@
-# Versiones con las que se ha comprobado la rama update-2026 (octubre de 2026).
-yfinance>=1.7
-pandas>=3.0
-numpy>=2.5
-matplotlib>=3.11
-scikit-learn>=1.9
-ta>=0.11
-mpl_finance>=0.10.1
-jupyter
+# Versiones exactas con las que se ha verificado la rama update-2026.
+# Fijadas a propósito: con versiones sin fijar, el curso se rompió solo cuando cambiaron las librerías.
+matplotlib==3.11.2
+MetaTrader5; sys_platform == "win32"  # solo Windows, no verificado
+mpl-finance==0.10.1
+numpy==2.5.3
+pandas==3.0.6
+scikit-learn==1.9.1
+ta==0.11.0
+yfinance==1.7.0

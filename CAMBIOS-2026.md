@@ -10,10 +10,16 @@
 
 ## Cómo usarla
 
+> **Qué está comprobado y qué no.** Comprobado: que cada celda de los capítulos 1 a 8 se ejecuta sin
+> error con las versiones de `requirements.txt` y que los datos tienen la forma del vídeo (histórico
+> completo, mismas columnas en el mismo orden). **No comprobado:** la descarga real desde Yahoo, que no
+> era accesible desde el entorno de prueba; se usó una réplica de su respuesta con precios inventados.
+
 - **En Google Colab (como en el vídeo):** abre el notebook de esta rama y, cuando el código lea un CSV
   (`EURUSD_D1.csv`, `assets.csv`…), súbelo al panel de archivos igual que en el vídeo.
 - **En tu ordenador:** `git clone -b update-2026 https://github.com/joanby/trading-algoritmico-a-z-con-python`,
-  instala `pip install -r requirements.txt` y copia junto al notebook los CSV que use (están en
+  instala `pip install -r requirements.txt` (versiones **fijadas**: las mismas con las que se ha
+  comprobado, para que un cambio futuro de las librerías no vuelva a romperlo) y copia junto al notebook los CSV que use (están en
   `FOREX D1/`, `FOREX M1/` y `CRYPTO H1/`).
 
 ## Qué ha cambiado y por qué
@@ -28,6 +34,12 @@ funcionar, a veces sin dar error:
 | Sin fechas, descarga **todo el histórico** | Descarga **solo el último mes** | Medias de 60 días vacías, `.loc["2020"]` da `KeyError` |
 | Columnas `Open, High, Low, Close, Adj Close, Volume` | Sin `Adj Close` (`auto_adjust=True`) | `KeyError: 'Adj Close'` y *Length mismatch* al renombrar |
 | Columnas simples, en ese orden | Columnas de dos niveles (precio, ticker) y en **orden alfabético** | Aunque arregles lo anterior, al renombrar por posición `open` acabaría siendo `Adj Close` |
+
+(Comprobado leyendo yfinance 0.1.70, la versión de cuando se grabó, y la 1.7.0 de hoy.
+`yf.Ticker(...).history()` no ha cambiado: ya ajustaba los precios y bajaba un mes por defecto.)
+
+Los dobles corchetes de `df[["Close"]].rolling(15).mean()` **no son un fallo**: funcionan igual en
+pandas 3. No hace falta cambiarlos.
 
 Por eso cada `yf.download(...)` lleva ahora tres argumentos que devuelven el comportamiento del vídeo:
 
@@ -62,7 +74,9 @@ el error; solo se ha marcado (etiqueta `raises-exception`) para que *Ejecutar to
 ## Lo que no se ha tocado
 
 - **El capítulo 9 (MetaTrader 5)**: la librería `MetaTrader5` solo funciona en Windows con MetaTrader 5
-  instalado y una cuenta, así que no se ha podido ejecutar aquí. El código está igual que en el vídeo.
+  instalado y una cuenta, así que **no se ha podido ejecutar aquí**. Un único cambio, sin ejecutar: el
+  notebook de la SMA importaba `Chapter_09_MT5`, pero el fichero del repositorio se llama
+  `Capitulo_09_MT5.py`; ahora importa `Capitulo_09_MT5`.
 - `mpl_finance` (velas japonesas del capítulo 6) está abandonada pero **sigue instalándose y
   funcionando**; su sucesora es `mplfinance`.
 - Avisos amarillos que puedes ver y no rompen nada: el de `mpl_finance`, el de *Could not infer format*
