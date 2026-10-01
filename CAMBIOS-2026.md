@@ -74,9 +74,9 @@ el error; solo se ha marcado (etiqueta `raises-exception`) para que *Ejecutar to
 ## Lo que no se ha tocado
 
 - **El capítulo 9 (MetaTrader 5)**: la librería `MetaTrader5` solo funciona en Windows con MetaTrader 5
-  instalado y una cuenta, así que **no se ha podido ejecutar aquí**. Un único cambio, sin ejecutar: el
-  notebook de la SMA importaba `Chapter_09_MT5`, pero el fichero del repositorio se llama
-  `Capitulo_09_MT5.py`; ahora importa `Capitulo_09_MT5`.
+  instalado y una cuenta, así que **no se ha podido ejecutar aquí**. Un único cambio, sin ejecutar: los dos
+  notebooks importaban `Chapter_09_MT5`, pero el fichero del repositorio se llama
+  `Capitulo_09_MT5.py`; ahora importan `Capitulo_09_MT5`.
 - `mpl_finance` (velas japonesas del capítulo 6) está abandonada pero **sigue instalándose y
   funcionando**; su sucesora es `mplfinance`.
 - Avisos amarillos que puedes ver y no rompen nada: el de `mpl_finance`, el de *Could not infer format*
