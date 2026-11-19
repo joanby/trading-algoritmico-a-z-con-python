@@ -6,5 +6,6 @@ mpl-finance==0.10.1
 numpy==2.5.3
 pandas==3.0.6
 scikit-learn==1.9.1
+six==1.17.0  # la pide mpl-finance (capítulo 6) sin declararla; python-dateutil 4.0 ya no la trae
 ta==0.11.0
 yfinance==1.7.0
