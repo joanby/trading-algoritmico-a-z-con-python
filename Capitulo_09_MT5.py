@@ -41,7 +41,7 @@ class MT5:
            mt5.initialize()
 
        # Get filling mode 
-       filling_mode = mt5.symbol_info(symbol).filling_mode - 1
+       filling_mode = mt5.symbol_info(symbol).filling_mode - 1  # ojo: según el broker puede no valer (ver CAMBIOS-2026.md)
 
        # Take ask price
        ask_price = mt5.symbol_info_tick(symbol).ask
